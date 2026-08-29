@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  מחיקת חשבון ונתונים — אפריקה ישראל / allinn
+  דף נחיתה עבור Google Play Data Safety
+  ============================================================
+  את אותה כתובת URL אפשר להזין בשני השדות בטופס:
+  Delete account URL  +  Delete data URL
+
+  לפני העלאה — לבדוק:
+  1. טבלת "מה נמחק ומה נשמר" תואמת למה שהאפליקציה באמת אוספת
+     ולמה שהוצהר בטופס Data safety. אי-התאמה = דחייה.
+  2. משכי השמירה (30 יום / 90 יום / 7 שנים) נכונים בפועל.
+  3. שלבי המחיקה תואמים למסכים האמיתיים באפליקציה.
+  ============================================================
+-->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מחיקת חשבון ונתונים — אפריקה ישראל</title>
+<meta name="description" content="בקשת מחיקת חשבון ומחיקת נתונים באפליקציית אפריקה ישראל מאת allinn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Assistant:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDF0EE;
+    --surface:#FFFFFF;
+    --ink:#131A17;
+    --muted:#5C6763;
+    --rule:#D3D9D6;
+    --signal:#14584A;
+    --keep:#8A5A00;
+    --keep-bg:#FBF3E2;
+    --gone-bg:#E4EDE9;
+    --measure:44rem;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+  }
+  .wrap{max-width:var(--measure);margin:0 auto;padding:0 1.25rem}
+  a{color:var(--signal)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+  /* ---- masthead ---- */
+  .masthead{padding:3.5rem 0 2rem}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 1rem;
+  }
+  h1{
+    font-family:"Frank Ruhl Libre",Georgia,serif;
+    font-weight:700;font-size:clamp(2rem,6vw,3rem);
+    line-height:1.15;margin:0 0 .85rem;letter-spacing:-.01em;
+  }
+  .standfirst{font-size:1.1rem;color:var(--muted);margin:0;max-width:34rem}
+  .identity{
+    margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--rule);
+    font-size:.95rem;color:var(--muted);
+  }
+  .identity b{color:var(--ink);font-weight:600}
+
+  /* ---- sections ---- */
+  section{padding:2.5rem 0;border-top:1px solid var(--rule)}
+  h2{
+    font-family:"Frank Ruhl Libre",Georgia,serif;
+    font-weight:500;font-size:1.6rem;margin:0 0 1.25rem;line-height:1.3;
+  }
+  h3{font-size:1rem;font-weight:600;margin:0 0 .35rem}
+  p{margin:0 0 1rem}
+  p:last-child{margin-bottom:0}
+
+  /* ---- steps ---- */
+  ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+  ol.steps li{
+    counter-increment:s;position:relative;
+    padding:0 3.25rem 1.5rem 0;
+  }
+  ol.steps li::before{
+    content:counter(s);
+    position:absolute;inset-inline-start:0;top:-.1rem;
+    width:2.1rem;height:2.1rem;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--signal);color:#fff;
+    font-family:"IBM Plex Mono",monospace;font-size:.9rem;
+  }
+  ol.steps li::after{
+    content:"";position:absolute;inset-inline-start:1.05rem;top:2.3rem;bottom:.35rem;
+    width:1px;background:var(--rule);
+  }
+  ol.steps li:last-child{padding-bottom:0}
+  ol.steps li:last-child::after{display:none}
+  .path{
+    display:inline-block;
+    font-family:"IBM Plex Mono",monospace;font-size:.85rem;
+    background:var(--surface);border:1px solid var(--rule);
+    padding:.15rem .5rem;border-radius:4px;
+  }
+
+  /* ---- action ---- */
+  .action{
+    background:var(--surface);border:1px solid var(--rule);
+    border-radius:10px;padding:1.5rem;margin-top:1.75rem;
+  }
+  .btn{
+    display:inline-block;background:var(--signal);color:#fff;
+    text-decoration:none;font-weight:600;font-size:1rem;
+    padding:.8rem 1.5rem;border-radius:6px;margin-top:.75rem;
+  }
+  .btn:hover{background:#0E4437}
+
+  /* ---- ledger (signature) ---- */
+  .ledger{margin:0;border-top:2px solid var(--ink)}
+  .row{
+    display:grid;grid-template-columns:1fr auto 8.5rem;
+    gap:1rem;align-items:baseline;
+    padding:.9rem 0;border-bottom:1px solid var(--rule);
+  }
+  .row .what{font-weight:600;font-size:.98rem}
+  .row .note{display:block;font-weight:400;font-size:.85rem;color:var(--muted)}
+  .chip{
+    font-size:.78rem;font-weight:600;white-space:nowrap;
+    padding:.2rem .6rem;border-radius:999px;
+  }
+  .chip.gone{background:var(--gone-bg);color:var(--signal)}
+  .chip.kept{background:var(--keep-bg);color:var(--keep)}
+  .when{
+    font-family:"IBM Plex Mono",monospace;font-size:.82rem;
+    color:var(--muted);text-align:start;
+  }
+  .ledger-head{
+    display:grid;grid-template-columns:1fr auto 8.5rem;gap:1rem;
+    font-family:"IBM Plex Mono",monospace;font-size:.7rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    padding-bottom:.5rem;
+  }
+  @media (max-width:560px){
+    .ledger-head{display:none}
+    .row{grid-template-columns:1fr;gap:.35rem}
+    .chip{justify-self:start}
+  }
+
+  /* ---- english ---- */
+  #en{direction:ltr;text-align:left}
+  #en .path,#en .when{direction:ltr}
+
+  footer{
+    padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
+    font-size:.85rem;color:var(--muted);
+  }
+  .lang-switch{
+    font-family:"IBM Plex Mono",monospace;font-size:.78rem;
+    letter-spacing:.08em;text-transform:uppercase;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    html{scroll-behavior:smooth}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow"><a class="lang-switch" href="#en">English ↓</a></p>
+    <h1>מחיקת חשבון ונתונים</h1>
+    <p class="standfirst">בכל רגע אפשר לבקש שהחשבון שלך יימחק, או למחוק חלק מהנתונים בלי לסגור את החשבון. בדף הזה כתוב איך עושים את זה ומה קורה לכל סוג מידע.</p>
+    <p class="identity">אפליקציה: <b>אפריקה ישראל</b> · מפתח: <b>allinn</b></p>
+  </header>
+
+  <section>
+    <h2>מחיקת החשבון ‏— איך מבקשים</h2>
+    <ol class="steps">
+      <li>
+        <h3>נווטו למסך המחיקה</h3>
+        <p>באפליקציה: <span class="path">עוד ← האזור האישי ← מחיקת חשבון</span></p>
+      </li>
+      <li>
+        <h3>לחצו על “מחיקת חשבון”</h3>
+        <p>הבקשה נקלטת מיד. <b>אין שלב אישור נוסף ולא ניתן לבטל אותה לאחר הלחיצה</b>, לכן ודאו שזו הפעולה הרצויה.</p>
+      </li>
+      <li>
+        <h3>מה קורה אחר כך</h3>
+        <p>הנתונים נמחקים מהשרתים שלנו בתוך <b>30 יום</b>. הפירוט המלא מופיע בטבלה למטה.</p>
+      </li>
+    </ol>
+
+    <div class="action">
+      <h3>אין לך גישה לאפליקציה?</h3>
+      <p>שלחו לנו בקשה מכתובת המייל הרשומה בחשבון ונטפל בה באותו אופן.</p>
+      <a class="btn" href="mailto:cm@allinn.co.il?subject=%D7%91%D7%A7%D7%A9%D7%AA%20%D7%9E%D7%97%D7%99%D7%A7%D7%AA%20%D7%97%D7%A9%D7%91%D7%95%D7%9F&body=%D7%A9%D7%9C%D7%95%D7%9D%2C%0A%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%91%D7%A7%D7%A9%2F%D7%AA%20%D7%9C%D7%9E%D7%97%D7%95%D7%A7%20%D7%90%D7%AA%20%D7%94%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99.%0A%0A%D7%9E%D7%99%D7%99%D7%9C%20%D7%94%D7%97%D7%A9%D7%91%D7%95%D7%9F%3A%20%0A%0A%D7%AA%D7%95%D7%93%D7%94.">שליחת בקשת מחיקה במייל</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>מה נמחק ומה נשמר</h2>
+    <p>לאחר ביצוע המחיקה, כך מטופל כל סוג מידע:</p>
+
+    <div class="ledger-head">
+      <span>סוג המידע</span><span>סטטוס</span><span>משך שמירה</span>
+    </div>
+    <div class="ledger">
+      <div class="row">
+        <span class="what">פרטי חשבון<span class="note">שם, כתובת מייל, סיסמה</span></span>
+        <span class="chip gone">נמחק</span>
+        <span class="when">עד 30 יום</span>
+      </div>
+      <div class="row">
+        <span class="what">תוכן שיצרת<span class="note">תמונות, טקסטים, קבצים שהעלית</span></span>
+        <span class="chip gone">נמחק</span>
+        <span class="when">עד 30 יום</span>
+      </div>
+      <div class="row">
+        <span class="what">היסטוריית שימוש<span class="note">פעולות ואירועים באפליקציה</span></span>
+        <span class="chip gone">נמחק</span>
+        <span class="when">עד 30 יום</span>
+      </div>
+      <div class="row">
+        <span class="what">גיבויים<span class="note">עותקים טכניים של מסד הנתונים</span></span>
+        <span class="chip gone">נמחק</span>
+        <span class="when">עד 90 יום</span>
+      </div>
+      <div class="row">
+        <span class="what">רשומות תשלום וחשבוניות<span class="note">נשמר מכוח חובה חוקית בדיני מס</span></span>
+        <span class="chip kept">נשמר</span>
+        <span class="when">7 שנים</span>
+      </div>
+      <div class="row">
+        <span class="what">נתונים אנונימיים מצטברים<span class="note">לא ניתנים לשיוך אליך</span></span>
+        <span class="chip kept">נשמר</span>
+        <span class="when">ללא הגבלה</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>מחיקת נתונים בלי סגירת החשבון</h2>
+    <p>אפשר למחוק חלק מהמידע ולהמשיך להשתמש באפליקציה. נווטו אל <span class="path">עוד ← האזור האישי</span> ובחרו את הנתונים שברצונכם למחוק, או שלחו בקשה ל־<a href="mailto:cm@allinn.co.il">cm@allinn.co.il</a> ופרטו אילו נתונים למחוק.</p>
+    <p>אותם משכי שמירה שבטבלה למעלה חלים גם על מחיקה חלקית.</p>
+  </section>
+
+  <footer>
+    <p>שאלות: <a href="mailto:cm@allinn.co.il">cm@allinn.co.il</a> · נענה בתוך 5 ימי עסקים.</p>
+    <p>allinn · עודכן לאחרונה: אוגוסט 2026</p>
+  </footer>
+
+  <!-- ================= ENGLISH ================= -->
+  <section id="en">
+    <p class="eyebrow"><a class="lang-switch" href="#top">↑ עברית</a></p>
+    <h1 style="font-size:clamp(1.7rem,5vw,2.4rem)">Delete your account and data</h1>
+    <p class="standfirst">You can ask us to delete your account at any time, or delete some of your data without closing the account. This page explains how, and what happens to each type of information.</p>
+    <p class="identity">App: <b>אפריקה ישראל</b> · Developer: <b>allinn</b></p>
+
+    <h2 style="margin-top:2.5rem">How to request account deletion</h2>
+    <ol class="steps">
+      <li>
+        <h3>Open the deletion screen</h3>
+        <p>In the app: <span class="path">More → My Account → Delete account</span></p>
+      </li>
+      <li>
+        <h3>Tap “Delete account”</h3>
+        <p>The request is submitted immediately. <b>There is no further confirmation step and it cannot be undone</b>, so make sure this is what you want.</p>
+      </li>
+      <li>
+        <h3>What happens next</h3>
+        <p>Your data is removed from our servers within <b>30 days</b>. The table below lists the details.</p>
+      </li>
+    </ol>
+
+    <div class="action">
+      <h3>Can't access the app?</h3>
+      <p>Email us from the address registered on the account and we'll handle it the same way.</p>
+      <a class="btn" href="mailto:cm@allinn.co.il?subject=Account%20deletion%20request&body=Hello%2C%0A%0AI%20would%20like%20to%20delete%20my%20account.%0A%0AAccount%20email%3A%20%0A%0AThank%20you.">Email a deletion request</a>
+    </div>
+
+    <h2 style="margin-top:2.5rem">What is deleted and what is kept</h2>
+    <div class="ledger-head">
+      <span>Data type</span><span>Status</span><span>Retention</span>
+    </div>
+    <div class="ledger">
+      <div class="row">
+        <span class="what">Account details<span class="note">Name, email address, password</span></span>
+        <span class="chip gone">Deleted</span>
+        <span class="when">Within 30 days</span>
+      </div>
+      <div class="row">
+        <span class="what">Content you created<span class="note">Photos, text, uploaded files</span></span>
+        <span class="chip gone">Deleted</span>
+        <span class="when">Within 30 days</span>
+      </div>
+      <div class="row">
+        <span class="what">Usage history<span class="note">In-app actions and events</span></span>
+        <span class="chip gone">Deleted</span>
+        <span class="when">Within 30 days</span>
+      </div>
+      <div class="row">
+        <span class="what">Backups<span class="note">Technical database copies</span></span>
+        <span class="chip gone">Deleted</span>
+        <span class="when">Within 90 days</span>
+      </div>
+      <div class="row">
+        <span class="what">Payment and invoice records<span class="note">Kept to meet tax law obligations</span></span>
+        <span class="chip kept">Kept</span>
+        <span class="when">7 years</span>
+      </div>
+      <div class="row">
+        <span class="what">Aggregated anonymous data<span class="note">Cannot be linked back to you</span></span>
+        <span class="chip kept">Kept</span>
+        <span class="when">Indefinitely</span>
+      </div>
+    </div>
+
+    <h2 style="margin-top:2.5rem">Deleting data without deleting your account</h2>
+    <p>You can remove some of your information and keep using the app. Go to <span class="path">More → My Account</span> and select the data you want to remove, or email <a href="mailto:cm@allinn.co.il">cm@allinn.co.il</a> describing which data to delete.</p>
+    <p>The retention periods in the table above apply to partial deletion as well.</p>
+
+    <footer style="border-top:1px solid var(--rule);margin-top:2.5rem">
+      <p>Questions: <a href="mailto:cm@allinn.co.il">cm@allinn.co.il</a> · We reply within 5 business days.</p>
+      <p>allinn · Last updated: August 2026</p>
+    </footer>
+  </section>
+
+</div>
+</body>
+</html>
