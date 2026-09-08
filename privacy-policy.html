@@ -10,15 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#EEF3F6; 
+    --paper:#EEF3F6;
     --card:#FFFFFF;
     --ink:#000000;
-    --ink-2:#4C5451;
-    --ink-3:#7A817D;
-    --rule:#D2D6D0;
+    --ink-2:#2E3A40;
+    --ink-3:#6E7C84;
+    --rule:#D2DDE3;
     --accent:#00AEEF;
     --accent-soft:#E2F5FD;
-    --dark:#1B2320;
+    --dark:#0B2833;
     --measure:66ch;
   }
 
@@ -50,15 +50,16 @@
 
   /* ---------- masthead ---------- */
   .masthead{
-    background:var(--dark);
-    color:#F2F3EF;
+    background:var(--card);
+    color:var(--ink);
+    border-bottom:3px solid var(--accent);
     padding:clamp(2.4rem,7vw,4.6rem) clamp(1.2rem,5vw,3rem) clamp(2rem,5vw,3.4rem);
   }
   .masthead-inner{max-width:78rem;margin:0 auto}
   .kicker{
     font-size:.86rem;
     letter-spacing:.02em;
-    color:#A9B3AC;
+    color:var(--ink-3);
     margin:0 0 .9rem;
   }
   .masthead h1{
@@ -69,12 +70,12 @@
     margin:0;
     max-width:20ch;
   }
-  .masthead h1 .thin{display:block;font-weight:500;color:#C8B695}
+  .masthead h1 .thin{display:block;font-weight:500;color:var(--accent)}
   .masthead .meta{
     margin:1.8rem 0 0;
     padding-top:1.1rem;
-    border-top:1px solid #3A443F;
-    color:#A9B3AC;
+    border-top:1px solid var(--rule);
+    color:var(--ink-2);
     font-size:.95rem;
     max-width:60ch;
   }
@@ -316,7 +317,7 @@
   @media print{
     body{background:#fff;font-size:11pt}
     .toc,.skip,footer{display:none}
-    .masthead{background:#fff;color:#000;padding:0 0 1rem}
+    .masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:0}
     .masthead h1 .thin{color:#000}
     .masthead .meta{color:#333;border-color:#999}
     .layout{display:block;padding:0}
